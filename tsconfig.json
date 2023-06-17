@@ -6,6 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "recharts": ["node_modules/recharts"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
