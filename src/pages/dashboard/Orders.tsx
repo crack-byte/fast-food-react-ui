@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridAlignment, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridAlignment, GridColDef } from '@mui/x-data-grid';
 import Title from './Title';
  interface TableProp {
   tableHeader: TableHeadProp[];
