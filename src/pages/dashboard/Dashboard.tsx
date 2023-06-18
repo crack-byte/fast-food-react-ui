@@ -7,68 +7,25 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Sidebar from './SideBar';
 import DashboardWidget from './DashBoardWidget';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
-import Chart from './Chart';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Grid, Paper } from '@mui/material';
-import Orders, { TableHeadProp, TableRowProp } from './Orders';
+import Orders, { TableHeadProp } from './Orders';
+import Util from 'src/service/Util';
 
 const defaultTheme = createTheme();
-
+const util = new Util();
 export default function Dashboard() {
   const header: TableHeadProp[] = [
-    { id: 1, name: "Name", align: 'inherit' },
-    { id: 2, name: "Date", align: 'inherit' },
-    { id: 3, name: "Ship To", align: 'inherit' },
-    { id: 4, name: "Payment Method", align: 'inherit' },
-    { id: 5, name: "Sale Amount", align: 'right' }
+    { id: 1, field:'order_id',name: "Order ID", align: 'left' },
+    { id: 2, field:'date',name: "Date", align: 'left' },
+    { id: 3, field:'type',name: "Type", align: 'left' },
+    { id: 4, field:'payment_method',name: "Payment Method", align: 'left' },
+    { id: 5, field:'payment_status',name: "Payment Status", align: 'left' },
+    { id: 5, field:'delivery_status',name: "Delivery Status", align: 'left' },
+    { id: 6, field:'total_amount',name: "Total Amount", align: 'right' }
   ];
-  function createData(
-    id: number,
-    date: string,
-    name: string,
-    shipTo: string,
-    paymentMethod: string,
-    amount: number,
-  ) {
-    const row: TableRowProp = { id, date, name, shipTo, paymentMethod, amount };
-    return row;
-  }
 
-  const rows = [
-    createData(
-      0,
-      '16 Mar, 2019',
-      'Elvis Presley',
-      'Tupelo, MS',
-      'VISA ⠀•••• 3719',
-      312.44,
-    ),
-    createData(
-      1,
-      '16 Mar, 2019',
-      'Paul McCartney',
-      'London, UK',
-      'VISA ⠀•••• 2574',
-      866.99,
-    ),
-    createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
-    createData(
-      3,
-      '16 Mar, 2019',
-      'Michael Jackson',
-      'Gary, IN',
-      'AMEX ⠀•••• 2000',
-      654.39,
-    ),
-    createData(
-      4,
-      '15 Mar, 2019',
-      'Bruce Springsteen',
-      'Long Branch, NJ',
-      'VISA ⠀•••• 5919',
-      212.79,
-    ),
-  ];
+  const rows: any[] = util.generateRows(50);
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
